@@ -1,9 +1,9 @@
-title: "Hugo Stellar"
+title: "Stellar Hugo Theme"
 paginate: 8
 relativeURLs: true
 
 theme:
-- stellar
+- Stellar-Hugo-Theme
 
 markup:
   _merge: deep
