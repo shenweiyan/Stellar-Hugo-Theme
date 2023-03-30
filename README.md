@@ -1,6 +1,6 @@
-## Hugo Stellar
+## Stellar-Hugo-Theme
 
-[Hexo theme stellar](https://github.com/xaoxuu/hexo-theme-stellar) 的 Hugo 移植版本。
+[Hexo theme stellar](https://github.com/xaoxuu/hexo-theme-stellar) 的 Hugo 移植版本；基于 [hugo-stellar](https://github.com/Yharimium/hugo-stellar) 的 dev 开发版本。
 
 > **注意！此移植版本尚未完善，仅供 debug！**
 
@@ -36,7 +36,7 @@ DC Note：<https://dcgg.eu.org/>
 hugo new site mysite
 cd mysite
 git init
-git submodule add https://github.com/Yharimium/hugo-stellar themes/stellar
+git submodule add -b dev https://github.com/Stellar-Hugo-Theme themes/stellar
 cp -R themes/stellar/exampleSite/* .
 rm config.toml
 ```
