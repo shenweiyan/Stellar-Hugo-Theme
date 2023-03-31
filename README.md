@@ -1,32 +1,26 @@
 ## Stellar-Hugo-Theme
 
-[Hexo theme stellar](https://github.com/xaoxuu/hexo-theme-stellar) 的 Hugo 移植版本；基于 [hugo-stellar](https://github.com/Yharimium/hugo-stellar) 的 dev 开发版本。
+这是 [Hexo theme stellar](https://github.com/xaoxuu/hexo-theme-stellar) 主题的 Hugo 移植版本；本仓库是基于 [hugo-stellar](https://github.com/Yharimium/hugo-stellar) 的 dev 开发版本。
 
 > **注意！此移植版本尚未完善，仅供 debug！**
 
-## Demo
+## 示例站点(部分站点可能已失效)
 
-模板网站：<https://hugo-template.github.io/Stellar-Hugo-Template/>
+- <https://hugo-template.github.io/Stellar-Hugo-Template/>
 
-Yharim Area：<https://yharim.com/>
+- <https://yharim.com/>
 
-DC Note：<https://dcgg.eu.org/>
+- <https://dcgg.eu.org/>
 
-## Preview
+## 预览
 
 ![image](https://user-images.githubusercontent.com/97100140/221884782-32708529-22f2-4054-afe3-05eea0d2646f.png)
 
 ![image](https://user-images.githubusercontent.com/97100140/221884615-096120de-c29e-4241-9cdf-cfc7a03d0e35.png)
 
-## Usage
+## 安装与使用
 
-### 方案 1：GitHub Actions + Pages 建站
-
-[Hugo Stellar 一键模板](https://github.com/cyolc932/Stellar-Hugo-Template)
-
-九分甚至十分感谢由用户 [cyolc932](https://github.com/cyolc932) 提供的大力支持。
-
-### 方案 2：本地建站
+### 本地建站
 
 > 请使用 hugo extended `v0.109.0` 或更新版本。
 
@@ -37,8 +31,7 @@ hugo new site mysite
 cd mysite
 git init
 git submodule add -b dev https://github.com/Stellar-Hugo-Theme themes/stellar
-cp -R themes/stellar/exampleSite/* .
-rm config.toml
+cp -R themes/Stellar-Hugo-Theme/exampleSite/* .
 ```
 
 预览网站：
@@ -61,7 +54,7 @@ hugo server
 > - stellar
 > ```
 
-## Content Management
+## 内容管理
 
 `content` 目录结构：支持 `posts`（博客）和 `docs`（文档）两种模式。
 
@@ -76,7 +69,7 @@ content/
     └── test.md         <- example.com/docs/test.html
 ```
 
-## Experimental Features
+## 其他特色
 
 ### 扩展语法支持
 
