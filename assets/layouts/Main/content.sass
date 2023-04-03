@@ -16,7 +16,13 @@
                 content: "/"
                 margin: 0 .5rem
                 color: var(--text-p3)
-
+        .meta
+            @include font(14px, --text-p3)
+            
+            &::before
+                content: "/"
+                margin: 0 .5rem
+		
     > .meta
         @include font(14px, --text-p3)
         margin-bottom: 1rem
@@ -28,7 +34,7 @@
 
     > .title
         line-height: 2.3rem
-        margin-bottom: .3rem
+        margin-bottom: 2rem
 
     > .cards
         display: flex
