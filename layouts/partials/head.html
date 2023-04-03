@@ -12,6 +12,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ .Site.Params.logo | relURL }}" />
     <link rel="alt" type="application/rss+xml" href={{ "index.xml" | relURL }} title="{{ .Site.Title }}" />
     <link rel="stylesheet" href={{ partial "func/toCSS" "_index.sass" }}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     {{- partial "scripts" . -}}
 </head>

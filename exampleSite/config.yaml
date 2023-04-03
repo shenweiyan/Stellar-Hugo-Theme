@@ -27,15 +27,15 @@ params:
   autoInvert: true
 
   social:
-  - name: "hugo"
-    url: "https://gohugo.io/"
-    logo: "/img/social/hugo.svg"
-  - name: "github"
+  - name: "GitHub"
     url: "https://github.com/"
-    logo: "/img/social/github.svg"
-  - name: "bilibili"
+    icon: "fa-brands fa-square-github"
+  - name: "语雀"
+    url: "https://yuque.com/"
+    icon: "fa-solid fa-crow"
+  - name: "哔哩哔哩"
     url: "https://space.bilibili.com/"
-    logo: "/img/social/bilibili.svg"
+    icon: "fa-brands fa-bilibili"
 
 menus:
   main:
