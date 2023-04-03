@@ -23,21 +23,21 @@
 <div class="archive">
     {{- range (where (where .Site.RegularPages "Section" "posts") ".Params.hide" "!=" "true").GroupByDate "2006" -}}
         <h1 class="year">{{ .Key }}</h1>
-        {{- range .Pages.GroupByDate "January" -}}
+        {{/*- range .Pages.GroupByDate "January" -*/}}
         <div class="group">
-            <h2 class="month">{{ .Key }}</h2>
+            <!--h2 class="month">{{ .Key }}</h2-->
             {{- range .Pages -}}
             {{- if isset .Params "link" -}}
             <a class="post" href='{{ .Params.link | safeURL }}' target='_blank'>
             {{- else -}}
             <a class="post" href='{{ .Permalink }}'>
             {{- end -}}
-                <span class="time">{{ .Date.Format "01-02" }}</span>
+                <span class="time">{{ .Date.Format "2006-01-02" }}</span>
                 <span class="title">{{ .Title }}</span>
             </a>
             {{- end -}}
         </div>
-        {{- end -}}
+        {{/*- end -*/}}
     {{- end -}}
     </div>
 {{- end -}}

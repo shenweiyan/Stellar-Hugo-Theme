@@ -1500,7 +1500,7 @@ body {
             font-weight: bold;
             color: var(--text-p4);
             display: inline-block;
-            width: 3.25em; }
+            width: 6em; }
           .LBody > .Main > .archive > .group > .post:hover > .title, .LBody > .Main > .archive > .group > .post:hover > .time {
             color: var(--text-warn); }
     .LBody > .Main > .content {
