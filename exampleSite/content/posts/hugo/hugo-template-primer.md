@@ -3,6 +3,7 @@ title: (Hu)go Template Primer
 date: 2023-02-12
 categories: [建站]
 tags: [go, hugo]
+description: Hugo 使用 Go html/template 库作为其模板引擎。它是一种极其轻便的引擎，提供少量的逻辑。在我们的经验中，这正是创建良好静态网站所需的适量逻辑。 
 ---
 
 

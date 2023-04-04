@@ -1,0 +1,13 @@
+<footer class="footer">
+    <br><br><hr>
+    <div class="sitemap">
+    {{- range .Site.Menus.main -}}
+        <div class="group">
+            <span class="title">{{ .Name }}</span>
+            {{- range .Params.tabs -}}
+                <a class="link" href="{{ .url }}">{{ .name }}</a>
+            {{- end -}}
+        </div>
+    {{- end -}}
+    </div>
+</footer>

@@ -1,0 +1,12 @@
+<footer class="footer">
+    <br><br><hr>
+    <div class="reference markdown">
+    {{- if reflect.IsSlice .Site.Params.Copyright -}}
+        {{- range .Site.Params.Copyright -}}
+            {{ . | $.Page.RenderString }} <br>
+        {{- end -}}
+    {{- else -}}
+        {{- replace .Site.Params.Copyright "{year}" now.Year | $.Page.RenderString -}}
+    {{- end -}}
+    </div>
+</footer>

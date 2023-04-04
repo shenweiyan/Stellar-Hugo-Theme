@@ -3,6 +3,7 @@ title: Getting Started with Hugo
 date: 2023-02-12
 categories: [建站]
 tags: [hugo]
+description: Hugo 是一种快速、流行和开源的静态网站生成器。只需几步，即可学会如何创建您的第一次 Hugo 网站。
 ---
 
 ## Step 1. Install Hugo
