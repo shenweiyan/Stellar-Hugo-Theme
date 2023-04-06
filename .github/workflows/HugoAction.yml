@@ -3,7 +3,7 @@ name: Hugo Actions # 名字自取
 on:
   push:
     branches:
-      - main  # 这里的意思是当 main 分支发生 push 的时候，运行下面的 jobs
+      - dev  # 这里的意思是当 main 分支发生 push 的时候，运行下面的 jobs
 
 jobs:
   deploy: 
