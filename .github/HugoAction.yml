@@ -1,0 +1,47 @@
+name: Hugo Actions # 名字自取
+
+on:
+  push:
+    branches:
+      - main  # 这里的意思是当 main 分支发生 push 的时候，运行下面的 jobs
+
+jobs:
+  deploy: 
+    runs-on: ubuntu-20.04	# 在什么环境运行任务
+    steps:
+      - uses: actions/checkout@v2.3.5	# 引用actions/checkout这个action，与所在的github仓库同名
+        with:
+         submodules: true  # Fetch Hugo themes (true OR recursive) 获取submodule主题
+         fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Hugo	# 步骤名自取
+        uses: peaceiris/actions-hugo@v2	# hugo官方提供的action，用于在任务环境中获取hugo
+        with:
+          hugo-version: '0.109.0'	# 获取最新版本的hugo
+          extended: true
+
+      - name: Build 
+        run: |
+          hugo new site mysite
+          cd mysite
+          git init
+          git submodule add -b dev https://github.com/shenweiyan/Stellar-Hugo-Theme themes/Stellar-Hugo-Theme
+          cp -R themes/Stellar-Hugo-Theme/exampleSite/* .
+          hugo
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3	# 一个自动发布github pages的action
+        with:
+          #创建GITHUB_TOKEN可以参考： 
+          #github_token: ${{ secrets.GITHUB_TOKEN }} 该项适用于发布到源码相同repo的情况，不能用于发布到其他repo
+          external_repository: shenweiyan/Stellar-Hugo-Theme	# 发布到哪个repo
+          #创建personal_token：
+          #https://docs.github.com/cn/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+          #粘贴personal_token：
+          #进入repo的Settings->Secrets一栏，选择New repository secret
+          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}	# 发布到其他repo需要提供上面生成的personal access token
+          #deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./public	# 注意这里指的是要发布哪个文件夹的内容，而不是指发布到目的仓库的什么位置，因为hugo默认生成静态网页到public文件夹，所以这里发布public文件夹里的内容
+          publish_branch: gh-pages	# 发布到哪个branch
+          force_orphan: true
+          full_commit_message: ${{ github.event.head_commit.message }}
