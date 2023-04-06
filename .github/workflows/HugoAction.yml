@@ -17,13 +17,8 @@ jobs:
 
       - name: Build 
         run: |
-          hugo new site mysite
-          cd mysite
-          git init
-          rm -rf config.toml
-          git submodule add https://github.com/shenweiyan/Stellar-Hugo-Theme themes/Stellar-Hugo-Theme
-          cp -R themes/Stellar-Hugo-Theme/exampleSite/* .
-          hugo
+          cp -R exampleSite/* .
+          hugo --themesDir ../..
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3	# 一个自动发布github pages的action
