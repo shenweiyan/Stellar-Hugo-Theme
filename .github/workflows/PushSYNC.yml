@@ -1,0 +1,54 @@
+name: Push To Gitee Coding
+
+on:
+  push:
+    branches:
+      - dev  # 这里的意思是当 dev 分支发生 push 的时候，运行下面的 jobs
+
+jobs:
+  push-to-mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone
+        run: |
+          git config --global init.defaultBranch dev
+          git init
+          git remote add origin https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git fetch --all
+          for branch in `git branch -a | grep remotes | grep -v HEAD`; do
+            git branch --track ${branch##*/} $branch
+          done
+        env:
+          GITHUB_REPOSITORY: shenweiyan/Stellar-Hugo-Theme
+          GITHUB_USERNAME: shenweiyan
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          
+      - name: Push to Coding
+        run: |
+          echo "stop!"
+          #remote_repo="https://${CODING_USERNAME}:${CODING_PASSWORD}@e.coding.net/${CODING_REPOSITORY}.git"
+          #git remote add coding "${remote_repo}"
+          #git show-ref # useful for debugging
+          #git branch --verbose
+          # publish all
+          #git push --all --force coding
+          #git push --tags --force coding
+        env:
+          CODING_REPOSITORY: shumlab/webstack/Stellar-Hugo-Theme
+          #CODING_USERNAME: ${{ secrets.CODING_USERNAME }}
+          #CODING_PASSWORD: ${{ secrets.CODING_PASSWORD }}
+          
+      - name: Push to Gitee
+        run: |
+          #echo "stop!"
+          remote_repo="https://${GITEE_USERNAME}:${GITEE_PASSWORD}@gitee.com/${GITEE_REPOSITORY}.git"
+          git remote add gitee "${remote_repo}"
+          git show-ref # useful for debugging
+          git branch --verbose
+          # publish all
+          git push --all --force gitee
+          git push --tags --force gitee
+        env:
+          GITEE_REPOSITORY: shenweiyan/Stellar-Hugo-Theme
+          GITEE_USERNAME: shenweiyan
+          GITEE_PASSWORD: ${{ secrets.GITEE_PASSWORD }}
