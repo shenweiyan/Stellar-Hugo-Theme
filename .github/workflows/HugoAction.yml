@@ -25,7 +25,8 @@ jobs:
           hugo new site mysite
           cd mysite
           git init
-          git submodule add -b dev https://github.com/shenweiyan/Stellar-Hugo-Theme themes/Stellar-Hugo-Theme
+          rm -rf config.toml
+          git submodule add https://github.com/shenweiyan/Stellar-Hugo-Theme themes/Stellar-Hugo-Theme
           cp -R themes/Stellar-Hugo-Theme/exampleSite/* .
           hugo
 
