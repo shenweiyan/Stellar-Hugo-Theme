@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>Basic usage - Stellar Hugo Theme</title>
+
+    <meta charset="utf-8">
+    <meta name="author" content="Stellar">
+    <meta name="Robots" content="All">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="windows-Target" content="_top">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../../logo.svg" />
+    <link rel="alt" type="application/rss+xml" href=../../../index.xml title="Stellar Hugo Theme" />
+    <link rel="stylesheet" href=../../../_index.css>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" /><script src="../../../modules/redirector.js"></script><link rel='dns-prefetch' href='https://cdn.staticfile.org'>
+    <link rel='preconnect' href='https://cdn.staticfile.org' crossorigin=''><link rel='stylesheet' href='https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.1.0/lxgwwenkaiscreen.css'><script src='https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js' ></script><script src='https://cdn.staticfile.org/mermaid/9.4.0/mermaid.js' ></script><link rel='stylesheet' href='../../../modules/fancybox.css'><script src='../../../modules/fancybox.umd.js' defer></script><script src='../../../modules/img.js' defer></script><script src='../../../modules/toc.js' defer></script><script src='../../../modules/codeblock.js' defer></script><script src='../../../modules/mathjax.js' defer></script><script src='https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js' defer></script><link rel="stylesheet" href=../../../autoinvert.css>
+<script>
+    mermaid.initialize({
+        securityLevel: 'loose',
+        themeVariables: {
+            fontFamily: 'Cera Round Pro',
+            fontSize: '85%'
+        }
+    });
+</script>
+</head>
+<body><div class="LBody">
+    <div class="Side"><header class="header">
+    <div class="info">
+        <a class="avatar" href="../../../">
+            <div class="bg shadow"></div>
+            <img class="bg rainbow" src="../../../img/rainbow64@3x.webp">
+            <img class="avatar" src="../../../avatar.png">
+        </a>
+        <a class="title" href="../../../">
+            <p class="text site-title">Stellar</p>
+            <p class="sub up">subtitle</p>
+            <p class="sub dw">subsubtitle</p>
+        </a>
+    </div>
+    <nav class="menu"><a class="nav-item " href="../../../">博客</a><a class="nav-item " href="../../../docs/">文档</a><a class="nav-item " href="../../../search/">搜索</a><a class="nav-item " href="../../../about/">关于</a></nav>
+</header><div class="widgets"><div class="widget search"><div class="search-form">
+    <input type="text" class="search-input" id="side-search-input" placeholder="" AUTOCOMPLETE="off">
+    <img class="search-icon" src="../../../img/search.svg">
+    <script>
+        var $input = $('#side-search-input');
+        var section = window.location.pathname.substring(0,6) == "/docs/" ? "docs" : "posts";
+        $input.attr('placeholder', section == "docs" ? "文档搜索" : "博客搜索")
+        $input.keydown( (e) => {
+            if (e.keyCode == 13) {
+                window.open(`/search/?sec=${section}?key=${$input.val()}`)
+            }
+        });
+    </script>
+</div></div><div class="widget toc"><p class="title"><a href="#">Basic usage</a></p>
+<div class="content markdown"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#test-your-installation">Test your installation</a></li>
+    <li><a href="#display-available-commands">Display available commands</a></li>
+    <li><a href="#build-your-site">Build your site</a></li>
+    <li><a href="#draft-future-and-expired-content">Draft, future, and expired content</a></li>
+    <li><a href="#develop-and-test-your-site">Develop and test your site</a>
+      <ul>
+        <li><a href="#livereload">LiveReload</a></li>
+        <li><a href="#automatic-redirection">Automatic redirection</a></li>
+      </ul>
+    </li>
+    <li><a href="#deploy-your-site">Deploy your site</a></li>
+  </ul>
+</nav></div></div></div>
+
+<footer class="footer">
+    <div class="social"><a class="box" href="https://github.com/" target="_blank">
+            
+	    <i class="fa-brands fa-square-github fa-lg"></i>
+        </a><a class="box" href="https://yuque.com/" target="_blank">
+            
+	    <i class="fa-solid fa-crow fa-lg"></i>
+        </a><a class="box" href="https://space.bilibili.com/" target="_blank">
+            
+	    <i class="fa-brands fa-bilibili fa-lg"></i>
+        </a></div>
+</footer>
+</div>
+    <div class="Main"><div class="info mobile-only">
+    <a class="avatar" href="../../../">
+        <div class="bg shadow"></div>
+        <img class="bg rainbow" src="../../../img/rainbow64@3x.webp">
+        <img class="avatar" src="../../../avatar.png">
+    </a>
+    <a class="title" href="../../../">
+        <p class="text site-title">Stellar</p>
+        <p class="sub up">subtitle</p>
+        <p class="sub dw">subsubtitle</p>
+    </a>
+</div>
+<div class="mobile-only sidebar-button" onclick="sidebar_button_click()">
+    <img src="../../../img/menu.svg"></img>
+    <script>
+    sidebar_button_click = (e) => {
+        $(".Side")[0].classList.toggle("layout");
+        $(".sidebar-button")[0].classList.toggle("layout");
+    }
+    </script>
+</div><main class="content markdown">
+    <div class="params"><div class="categories"><a class="param" href="../../../categories/getting-started">getting started</a></div><div class="meta">发布于 0001-01-01</div>
+    </div>
+    
+    <h1 class="title">Basic usage</h1>
+    <span class="description">Hugo&#39;s command line interface (CLI) is fully featured but simple to use, even for those with limited experience working from the command line.</span><h2 id="#test-your-installation">
+    Test your installation
+    <a class="anchor" name="test-your-installation" href="#test-your-installation">#</a>
+</h2><p>After <a class="md_link" href="../../../installation/"  >installing<img class="icon" src="../../../img/link.svg" /></a> Hugo, test your installation by running:</p>
+<div class="highlight" ><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo version</span></span></code></pre></td></tr></table>
+</div>
+<span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<p>You should see something like:</p>
+<div class="highlight" ><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">hugo v0.105.0-0e3b42b4a9bdeb4d866210819fc6ddcf51582ffa+extended linux/amd64 BuildDate=2022-10-28T12:29:05Z VendorInfo=snap:0.105.0</span></span></code></pre></td></tr></table>
+</div>
+<span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<h2 id="#display-available-commands">
+    Display available commands
+    <a class="anchor" name="display-available-commands" href="#display-available-commands">#</a>
+</h2><p>To see a list of the available commands and flags:</p>
+<div class="highlight" ><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo help</span></span></code></pre></td></tr></table>
+</div>
+<span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<p>To get help with a subcommand, use the <code>--help</code> flag. For example:</p>
+<div class="highlight" ><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo server --help</span></span></code></pre></td></tr></table>
+</div>
+<span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<h2 id="#build-your-site">
+    Build your site
+    <a class="anchor" name="build-your-site" href="#build-your-site">#</a>
+</h2><p>To build your site, <code>cd</code> into your project directory and run:</p>
+<div class="highlight" ><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo</span></span></code></pre></td></tr></table>
+</div>
+<span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<p>The <a class="md_link" href="../../../commands/hugo/"  ><code>hugo</code><img class="icon" src="../../../img/link.svg" /></a> command builds your site, publishing the files to the <code>public</code> directory. To publish your site to a different directory, use the <a class="md_link" href="../../../commands/hugo/#options"  ><code>--destination</code><img class="icon" src="../../../img/link.svg" /></a> flag or set <a class="md_link" href="../../../getting-started/configuration/#publishdir"  ><code>publishDir</code><img class="icon" src="../../../img/link.svg" /></a> in your site configuration.</p>
+<h2 id="#draft-future-and-expired-content">
+    Draft, future, and expired content
+    <a class="anchor" name="draft-future-and-expired-content" href="#draft-future-and-expired-content">#</a>
+</h2><p>Hugo allows you to set <code>draft</code>, <code>date</code>, <code>publishDate</code>, and <code>expiryDate</code> in the <a class="md_link" href="../../../content-management/front-matter/"  >front matter<img class="icon" src="../../../img/link.svg" /></a> of your content. By default, Hugo will not publish content when:</p>
+<ul>
+<li>The <code>draft</code> value is <code>true</code></li>
+<li>The <code>date</code> is in the future</li>
+<li>The <code>publishDate</code> is in the future</li>
+<li>The <code>expiryDate</code> is in the past</li>
+</ul>
+<p>You can override the default behavior when running <code>hugo</code> or <code>hugo server</code> with command line flags:</p>
+<div class="highlight" ><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2">2</a>
+</span><span class="lnt" id="3"><a class="lnlinks" href="#3">3</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo --buildDrafts    <span class="c1"># or -D</span>
+</span></span><span class="line"><span class="cl">hugo --buildExpired   <span class="c1"># or -E</span>
+</span></span><span class="line"><span class="cl">hugo --buildFuture    <span class="c1"># or -F</span></span></span></code></pre></td></tr></table>
+</div>
+<span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<p>Although you can also set these values in your site configuration, it can lead to unwanted results unless all content authors are aware of, and understand, the settings.</p>
+<h2 id="#develop-and-test-your-site">
+    Develop and test your site
+    <a class="anchor" name="develop-and-test-your-site" href="#develop-and-test-your-site">#</a>
+</h2><p>To view your site while developing layouts or creating content, <code>cd</code> into your project directory and run:</p>
+<div class="highlight" ><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo server</span></span></code></pre></td></tr></table>
+</div>
+<span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<p>The <a class="md_link" href="../../../commands/hugo_server/"  ><code>hugo server</code><img class="icon" src="../../../img/link.svg" /></a> command builds your site into memory, and serves your pages using a minimal HTTP server. When you run <code>hugo server</code> it will display the URL of your local site:</p>
+<div class="highlight" ><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Web Server is available at http://localhost:1313/ </span></span></code></pre></td></tr></table>
+</div>
+<span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<p>While the server is running, it watches your project directory for changes to assets, configuration, content, data, layouts, translations, and static files. When it detects a change, the server rebuilds your site and refreshes your browser using <a class="md_link" href="https://github.com/livereload/livereload-js"  >LiveReload<img class="icon" src="../../../img/link.svg" /></a>.</p>
+<p>Most Hugo builds are so fast that you may not notice the change unless you are looking directly at your browser.</p>
+<h3 id="#livereload">
+    LiveReload
+    <a class="anchor" name="livereload" href="#livereload">#</a>
+</h3><p>While the server is running, Hugo injects JavaScript into the generated HTML pages. The LiveReload script creates a connection from the browser to the server via web sockets. You do not need to install any software or browser plugins, nor is any configuration required.</p>
+<h3 id="#automatic-redirection">
+    Automatic redirection
+    <a class="anchor" name="automatic-redirection" href="#automatic-redirection">#</a>
+</h3><p>When editing content, if you want your browser to automatically redirect to the page you last modified, run:</p>
+<div class="highlight" ><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo server --navigateToChanged</span></span></code></pre></td></tr></table>
+</div>
+<span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<h2 id="#deploy-your-site">
+    Deploy your site
+    <a class="anchor" name="deploy-your-site" href="#deploy-your-site">#</a>
+</h2><p>When you are ready to deploy your site, run:</p>
+<div class="highlight" ><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo</span></span></code></pre></td></tr></table>
+</div>
+<span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<p>This builds your site, publishing the files to the public directory. The directory structure will look something like this:</p>
+<div class="highlight" ><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1"> 1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2"> 2</a>
+</span><span class="lnt" id="3"><a class="lnlinks" href="#3"> 3</a>
+</span><span class="lnt" id="4"><a class="lnlinks" href="#4"> 4</a>
+</span><span class="lnt" id="5"><a class="lnlinks" href="#5"> 5</a>
+</span><span class="lnt" id="6"><a class="lnlinks" href="#6"> 6</a>
+</span><span class="lnt" id="7"><a class="lnlinks" href="#7"> 7</a>
+</span><span class="lnt" id="8"><a class="lnlinks" href="#8"> 8</a>
+</span><span class="lnt" id="9"><a class="lnlinks" href="#9"> 9</a>
+</span><span class="lnt" id="10"><a class="lnlinks" href="#10">10</a>
+</span><span class="lnt" id="11"><a class="lnlinks" href="#11">11</a>
+</span><span class="lnt" id="12"><a class="lnlinks" href="#12">12</a>
+</span><span class="lnt" id="13"><a class="lnlinks" href="#13">13</a>
+</span><span class="lnt" id="14"><a class="lnlinks" href="#14">14</a>
+</span><span class="lnt" id="15"><a class="lnlinks" href="#15">15</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">public/
+</span></span><span class="line"><span class="cl">├── categories/
+</span></span><span class="line"><span class="cl">│   ├── index.html
+</span></span><span class="line"><span class="cl">│   └── index.xml  &lt;-- RSS feed for this section
+</span></span><span class="line"><span class="cl">├── post/
+</span></span><span class="line"><span class="cl">│   ├── my-first-post/
+</span></span><span class="line"><span class="cl">│   │   └── index.html
+</span></span><span class="line"><span class="cl">│   ├── index.html
+</span></span><span class="line"><span class="cl">│   └── index.xml  &lt;-- RSS feed for this section
+</span></span><span class="line"><span class="cl">├── tags/
+</span></span><span class="line"><span class="cl">│   ├── index.html
+</span></span><span class="line"><span class="cl">│   └── index.xml  &lt;-- RSS feed for this section
+</span></span><span class="line"><span class="cl">├── index.html
+</span></span><span class="line"><span class="cl">├── index.xml      &lt;-- RSS feed for the site
+</span></span><span class="line"><span class="cl">└── sitemap.xml</span></span></code></pre></td></tr></table>
+</div>
+<span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<p>In a simple hosting environment, where you typically <code>ftp</code>, <code>rsync</code>, or <code>scp</code> your files to the root of a virtual host, the contents of the <code>public</code> directory are all that you need.</p>
+<p>Most of our users deploy their sites using a CI/CD workflow, where a push<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> to their GitHub or GitLab repository triggers a build and deployment. Popular providers include <a class="md_link" href="https://aws.amazon.com/amplify/"  >AWS Amplify<img class="icon" src="../../../img/link.svg" /></a>, <a class="md_link" href="https://cloudcannon.com/"  >CloudCannon<img class="icon" src="../../../img/link.svg" /></a>, <a class="md_link" href="https://pages.cloudflare.com/"  >Cloudflare Pages<img class="icon" src="../../../img/link.svg" /></a>, <a class="md_link" href="https://pages.github.com/"  >GitHub Pages<img class="icon" src="../../../img/link.svg" /></a>, <a class="md_link" href="https://docs.gitlab.com/ee/user/project/pages/"  >GitLab Pages<img class="icon" src="../../../img/link.svg" /></a>, and <a class="md_link" href="https://www.netlify.com/"  >Netlify<img class="icon" src="../../../img/link.svg" /></a>.</p>
+<p>Learn more in the <a class="md_link" href="../../../hosting-and-deployment/"  >hosting and deployment<img class="icon" src="../../../img/link.svg" /></a> section.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>The Git repository contains the entire project directory, typically excluding the public directory because the site is built <em>after</em> the push.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+</main><footer class="footer">
+    <br><br><hr>
+    <div class="sitemap"><div class="group">
+            <span class="title">博客</span><a class="link" href="../../../">所有文章</a><a class="link" href="../../../categories/">分类</a><a class="link" href="../../../tags/">标签</a><a class="link" href="../../../archives/">归档</a></div><div class="group">
+            <span class="title">文档</span><a class="link" href="../../../docs/">所有文档</a></div><div class="group">
+            <span class="title">搜索</span><a class="link" href="../../../search/?sec=posts">博客搜索</a><a class="link" href="../../../search/?sec=docs">文档搜索</a></div><div class="group">
+            <span class="title">关于</span><a class="link" href="../../../about/#about-hugo">About Hugo</a></div></div>
+</footer>
+</div>
+</div></body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>nest_folders - Stellar Hugo Theme</title>
+
+    <meta charset="utf-8">
+    <meta name="author" content="Stellar">
+    <meta name="Robots" content="All">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="windows-Target" content="_top">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../../logo.svg" />
+    <link rel="alt" type="application/rss+xml" href=../../../../../index.xml title="Stellar Hugo Theme" />
+    <link rel="stylesheet" href=../../../../../_index.css>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" /><script src="../../../../../modules/redirector.js"></script><link rel='dns-prefetch' href='https://cdn.staticfile.org'>
+    <link rel='preconnect' href='https://cdn.staticfile.org' crossorigin=''><link rel='stylesheet' href='https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.1.0/lxgwwenkaiscreen.css'><script src='https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js' ></script><script src='https://cdn.staticfile.org/mermaid/9.4.0/mermaid.js' ></script><link rel='stylesheet' href='../../../../../modules/fancybox.css'><script src='../../../../../modules/fancybox.umd.js' defer></script><script src='../../../../../modules/img.js' defer></script><script src='../../../../../modules/toc.js' defer></script><script src='../../../../../modules/codeblock.js' defer></script><script src='../../../../../modules/mathjax.js' defer></script><script src='https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js' defer></script><link rel="stylesheet" href=../../../../../autoinvert.css>
+<script>
+    mermaid.initialize({
+        securityLevel: 'loose',
+        themeVariables: {
+            fontFamily: 'Cera Round Pro',
+            fontSize: '85%'
+        }
+    });
+</script>
+</head>
+<body><div class="LBody">
+    <div class="Side"><header class="header">
+    <a class="back" href="../../../../../docs/">
+        <svg aria-hidden="true" viewBox="0 0 16 16" width="1rem" height="1rem" fill="currentColor">
+            <path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path>
+        </svg>
+        <span>所有项目</span>
+    </a>
+    <div class="info">
+        <a class="title" href="../../../../../docs/example/">
+            <h1 class="text">Example Docs</h1>
+        </a>
+    </div>
+</header><div class="widgets"><div class="widget search"><div class="search-form">
+    <input type="text" class="search-input" id="side-search-input" placeholder="" AUTOCOMPLETE="off">
+    <img class="search-icon" src="../../../../../img/search.svg">
+    <script>
+        var $input = $('#side-search-input');
+        var section = window.location.pathname.substring(0,6) == "/docs/" ? "docs" : "posts";
+        $input.attr('placeholder', section == "docs" ? "文档搜索" : "博客搜索")
+        $input.keydown( (e) => {
+            if (e.keyCode == 13) {
+                window.open(`/search/?sec=${section}?key=${$input.val()}`)
+            }
+        });
+    </script>
+</div></div><div class="widget tree"><details class="item" >
+    <summary class="title"><a href="../../../../../docs/example/folder_1/">folder_1</a></summary><div class="inner">
+        <ul class="list">
+            <li><a href="../../../../../docs/example/folder_1/text/">text</a></li></ul>
+    </div></details><details class="item" >
+    <summary class="title"><a href="../../../../../docs/example/folder_2/">folder_2</a></summary></details><details class="item" open>
+    <summary class="title"><a href="../../../../../docs/example/nest_folders/">nest_folders</a></summary><div class="inner">
+        <ul class="list">
+            <li><details class="item" open>
+    <summary class="title"><a href="../../../../../docs/example/nest_folders/nest_folders/">nest_folders</a></summary><div class="inner">
+        <ul class="list">
+            <li><details class="item" open>
+    <summary class="title"><a href="../../../../../docs/example/nest_folders/nest_folders/nest_folders/">nest_folders</a></summary></details></li></ul>
+    </div></details></li></ul>
+    </div></details></div></div>
+
+<footer class="footer">
+    <div class="social"><a class="box" href="https://github.com/" target="_blank">
+            
+	    <i class="fa-brands fa-square-github fa-lg"></i>
+        </a><a class="box" href="https://yuque.com/" target="_blank">
+            
+	    <i class="fa-solid fa-crow fa-lg"></i>
+        </a><a class="box" href="https://space.bilibili.com/" target="_blank">
+            
+	    <i class="fa-brands fa-bilibili fa-lg"></i>
+        </a></div>
+</footer>
+</div>
+    <div class="Main"><div class="info mobile-only">
+    <a class="avatar" href="../../../../../">
+        <div class="bg shadow"></div>
+        <img class="bg rainbow" src="../../../../../img/rainbow64@3x.webp">
+        <img class="avatar" src="../../../../../avatar.png">
+    </a>
+    <a class="title" href="../../../../../">
+        <p class="text site-title">Stellar</p>
+        <p class="sub up">subtitle</p>
+        <p class="sub dw">subsubtitle</p>
+    </a>
+</div>
+<div class="mobile-only sidebar-button" onclick="sidebar_button_click()">
+    <img src="../../../../../img/menu.svg"></img>
+    <script>
+    sidebar_button_click = (e) => {
+        $(".Side")[0].classList.toggle("layout");
+        $(".sidebar-button")[0].classList.toggle("layout");
+    }
+    </script>
+</div><div class="content markdown">
+            <h1 class="title">nest_folders</h1>
+            <span class="description"></span><div class="cards"></div>
+    <placeholder></placeholder></div>
+    </div>
+</div></body>
+</html>

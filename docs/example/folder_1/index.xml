@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>folder_1 on Stellar Hugo Theme</title>
+    <link>/docs/example/folder_1/</link>
+    <description>Recent content in folder_1 on Stellar Hugo Theme</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="/docs/example/folder_1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>text</title>
+      <link>/docs/example/folder_1/text/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/example/folder_1/text/</guid>
+      <description> h2 # h3 # h4 # </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MathJax on Stellar Hugo Theme</title>
+    <link>/tags/mathjax/</link>
+    <description>Recent content in MathJax on Stellar Hugo Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 12 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/mathjax/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MathJax 支持</title>
+      <link>/posts/hugo/mathjax%E6%94%AF%E6%8C%81/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/hugo/mathjax%E6%94%AF%E6%8C%81/</guid>
+      <description>Inline Math # Example$abc$ $e^{\pi i}=-1$ $\frac{3}{2}$$abc$ $e^{\pi i}=-1$ $\frac{3}{2}$ Display Math # Example$$ \sum_{i=1}^{n}\int_{0}^{\pi}\log_2{e^n} $$$$ \sum_{i=1}^{n}\int_{0}^{\pi}\log_2{e^n} $$ Using Latex Codeblock # ``` latex f(n)= \begin{cases} f(n-1)+f(n-2) &amp;amp; n \ge 3 \\ 1 &amp;amp; n=1,2 \end{cases} ``` $$f(n)= \begin{cases} f(n-1)&amp;#43;f(n-2) &amp;amp; n \ge 3 \\ 1 &amp;amp; n=1,2 \end{cases}$$</description>
+    </item>
+    
+  </channel>
+</rss>

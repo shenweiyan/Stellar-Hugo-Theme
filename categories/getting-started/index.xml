@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>getting started on Stellar Hugo Theme</title>
+    <link>/categories/getting-started/</link>
+    <description>Recent content in getting started on Stellar Hugo Theme</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="/categories/getting-started/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Basic usage</title>
+      <link>/posts/hugo/basic-usage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/hugo/basic-usage/</guid>
+      <description>Test your installation # After installing Hugo, test your installation by running:
+1 hugo version You should see something like:
+1 hugo v0.105.0-0e3b42b4a9bdeb4d866210819fc6ddcf51582ffa+extended linux/amd64 BuildDate=2022-10-28T12:29:05Z VendorInfo=snap:0.105.0 Display available commands # To see a list of the available commands and flags:
+1 hugo help To get help with a subcommand, use the --help flag. For example:
+1 hugo server --help Build your site # To build your site, cd into your project directory and run:</description>
+    </item>
+    
+  </channel>
+</rss>

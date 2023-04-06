@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>Migrate to Hugo from Jekyll - Stellar Hugo Theme</title>
+
+    <meta charset="utf-8">
+    <meta name="author" content="Stellar">
+    <meta name="Robots" content="All">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="windows-Target" content="_top">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../../logo.svg" />
+    <link rel="alt" type="application/rss+xml" href=../../../index.xml title="Stellar Hugo Theme" />
+    <link rel="stylesheet" href=../../../_index.css>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" /><script src="../../../modules/redirector.js"></script><link rel='dns-prefetch' href='https://cdn.staticfile.org'>
+    <link rel='preconnect' href='https://cdn.staticfile.org' crossorigin=''><link rel='stylesheet' href='https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.1.0/lxgwwenkaiscreen.css'><script src='https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js' ></script><script src='https://cdn.staticfile.org/mermaid/9.4.0/mermaid.js' ></script><link rel='stylesheet' href='../../../modules/fancybox.css'><script src='../../../modules/fancybox.umd.js' defer></script><script src='../../../modules/img.js' defer></script><script src='../../../modules/toc.js' defer></script><script src='../../../modules/codeblock.js' defer></script><script src='../../../modules/mathjax.js' defer></script><script src='https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js' defer></script><link rel="stylesheet" href=../../../autoinvert.css>
+<script>
+    mermaid.initialize({
+        securityLevel: 'loose',
+        themeVariables: {
+            fontFamily: 'Cera Round Pro',
+            fontSize: '85%'
+        }
+    });
+</script>
+</head>
+<body><div class="LBody">
+    <div class="Side"><header class="header">
+    <div class="info">
+        <a class="avatar" href="../../../">
+            <div class="bg shadow"></div>
+            <img class="bg rainbow" src="../../../img/rainbow64@3x.webp">
+            <img class="avatar" src="../../../avatar.png">
+        </a>
+        <a class="title" href="../../../">
+            <p class="text site-title">Stellar</p>
+            <p class="sub up">subtitle</p>
+            <p class="sub dw">subsubtitle</p>
+        </a>
+    </div>
+    <nav class="menu"><a class="nav-item active" href="../../../">博客</a><a class="nav-item " href="../../../docs/">文档</a><a class="nav-item " href="../../../search/">搜索</a><a class="nav-item " href="../../../about/">关于</a></nav>
+</header><div class="widgets"><div class="widget search"><div class="search-form">
+    <input type="text" class="search-input" id="side-search-input" placeholder="" AUTOCOMPLETE="off">
+    <img class="search-icon" src="../../../img/search.svg">
+    <script>
+        var $input = $('#side-search-input');
+        var section = window.location.pathname.substring(0,6) == "/docs/" ? "docs" : "posts";
+        $input.attr('placeholder', section == "docs" ? "文档搜索" : "博客搜索")
+        $input.keydown( (e) => {
+            if (e.keyCode == 13) {
+                window.open(`/search/?sec=${section}?key=${$input.val()}`)
+            }
+        });
+    </script>
+</div></div><div class="widget toc"><p class="title"><a href="#">Migrate to Hugo from Jekyll</a></p>
+<div class="content markdown"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#move-static-content-to-static">Move static content to <code>static</code></a></li>
+    <li><a href="#create-your-hugo-configuration-file">Create your Hugo configuration file</a></li>
+    <li><a href="#set-your-configuration-publish-folder-to-_site">Set your configuration publish folder to <code>_site</code></a></li>
+    <li><a href="#convert-jekyll-templates-to-hugo-templates">Convert Jekyll templates to Hugo templates</a></li>
+    <li><a href="#convert-jekyll-plugins-to-hugo-shortcodes">Convert Jekyll plugins to Hugo shortcodes</a>
+      <ul>
+        <li><a href="#implementation">Implementation</a></li>
+        <li><a href="#usage">Usage</a></li>
+      </ul>
+    </li>
+    <li><a href="#finishing-touches">Finishing touches</a>
+      <ul>
+        <li><a href="#fix-content">Fix content</a></li>
+        <li><a href="#clean-up">Clean up</a></li>
+      </ul>
+    </li>
+    <li><a href="#a-practical-example-in-a-diff">A practical example in a diff</a></li>
+  </ul>
+</nav></div></div></div>
+
+<footer class="footer">
+    <div class="social"><a class="box" href="https://github.com/" target="_blank">
+            
+	    <i class="fa-brands fa-square-github fa-lg"></i>
+        </a><a class="box" href="https://yuque.com/" target="_blank">
+            
+	    <i class="fa-solid fa-crow fa-lg"></i>
+        </a><a class="box" href="https://space.bilibili.com/" target="_blank">
+            
+	    <i class="fa-brands fa-bilibili fa-lg"></i>
+        </a></div>
+</footer>
+</div>
+    <div class="Main"><div class="info mobile-only">
+    <a class="avatar" href="../../../">
+        <div class="bg shadow"></div>
+        <img class="bg rainbow" src="../../../img/rainbow64@3x.webp">
+        <img class="avatar" src="../../../avatar.png">
+    </a>
+    <a class="title" href="../../../">
+        <p class="text site-title">Stellar</p>
+        <p class="sub up">subtitle</p>
+        <p class="sub dw">subsubtitle</p>
+    </a>
+</div>
+<div class="mobile-only sidebar-button" onclick="sidebar_button_click()">
+    <img src="../../../img/menu.svg"></img>
+    <script>
+    sidebar_button_click = (e) => {
+        $(".Side")[0].classList.toggle("layout");
+        $(".sidebar-button")[0].classList.toggle("layout");
+    }
+    </script>
+</div><main class="content markdown">
+    <div class="params"><div class="tags"><a class="param" href="../../../tags/hugo">hugo</a><a class="param" href="../../../tags/jekyll">jekyll</a><a class="param" href="../../../tags/migration">migration</a><a class="param" href="../../../tags/git">git</a><a class="param" href="../../../tags/templates">templates</a></div><div class="meta">发布于 2014-03-10</div>
+    </div>
+    
+    <h1 class="title">Migrate to Hugo from Jekyll</h1>
+    <span class="description">Jekyll 的速度实在是太慢了，我只有几十篇文章，在 Watch 模式下，每次改动，重新生成都要花费 3 秒钟，实在是太慢了。</span><h2 id="#move-static-content-to-static">
+    Move static content to <code>static</code>
+    <a class="anchor" name="move-static-content-to-static" href="#move-static-content-to-static">#</a>
+</h2><p>Jekyll has a rule that any directory not starting with <code>_</code> will be copied as-is to the <code>_site</code> output. Hugo keeps all static content under <code>static</code>. You should therefore move it all there.
+With Jekyll, something that looked like</p>
+<pre><code>▾ &lt;root&gt;/
+    ▾ images/
+        logo.png
+</code></pre>
+<p>should become</p>
+<pre><code>▾ &lt;root&gt;/
+    ▾ static/
+        ▾ images/
+            logo.png
+</code></pre>
+<p>Additionally, you&rsquo;ll want any files that should reside at the root (such as <code>CNAME</code>) to be moved to <code>static</code>.</p>
+<h2 id="#create-your-hugo-configuration-file">
+    Create your Hugo configuration file
+    <a class="anchor" name="create-your-hugo-configuration-file" href="#create-your-hugo-configuration-file">#</a>
+</h2><p>Hugo can read your configuration as JSON, YAML or TOML. Hugo supports parameters custom configuration too. Refer to the <a class="md_link" href="../../../overview/configuration/"  >Hugo configuration documentation<img class="icon" src="../../../img/link.svg" /></a> for details.</p>
+<h2 id="#set-your-configuration-publish-folder-to-_site">
+    Set your configuration publish folder to <code>_site</code>
+    <a class="anchor" name="set-your-configuration-publish-folder-to-_site" href="#set-your-configuration-publish-folder-to-_site">#</a>
+</h2><p>The default is for Jekyll to publish to <code>_site</code> and for Hugo to publish to <code>public</code>. If, like me, you have <a class="md_link" href="http://blog.blindgaenger.net/generate_github_pages_in_a_submodule.html"  ><code>_site</code> mapped to a git submodule on the <code>gh-pages</code> branch<img class="icon" src="../../../img/link.svg" /></a>, you&rsquo;ll want to do one of two alternatives:</p>
+<ol>
+<li>
+<p>Change your submodule to point to map <code>gh-pages</code> to public instead of <code>_site</code> (recommended).</p>
+<pre><code> git submodule deinit _site
+ git rm _site
+ git submodule add -b gh-pages git@github.com:your-username/your-repo.git public
+</code></pre>
+</li>
+<li>
+<p>Or, change the Hugo configuration to use <code>_site</code> instead of <code>public</code>.</p>
+<pre><code> {
+     ..
+     &quot;publishdir&quot;: &quot;_site&quot;,
+     ..
+ }
+</code></pre>
+</li>
+</ol>
+<h2 id="#convert-jekyll-templates-to-hugo-templates">
+    Convert Jekyll templates to Hugo templates
+    <a class="anchor" name="convert-jekyll-templates-to-hugo-templates" href="#convert-jekyll-templates-to-hugo-templates">#</a>
+</h2><p>That&rsquo;s the bulk of the work right here. The documentation is your friend. You should refer to <a class="md_link" href="http://jekyllrb.com/docs/templates/"  >Jekyll&rsquo;s template documentation<img class="icon" src="../../../img/link.svg" /></a> if you need to refresh your memory on how you built your blog and <a class="md_link" href="../../../layout/templates/"  >Hugo&rsquo;s template<img class="icon" src="../../../img/link.svg" /></a> to learn Hugo&rsquo;s way.</p>
+<p>As a single reference data point, converting my templates for <a class="md_link" href="http://heyitsalex.net/"  >heyitsalex.net<img class="icon" src="../../../img/link.svg" /></a> took me no more than a few hours.</p>
+<h2 id="#convert-jekyll-plugins-to-hugo-shortcodes">
+    Convert Jekyll plugins to Hugo shortcodes
+    <a class="anchor" name="convert-jekyll-plugins-to-hugo-shortcodes" href="#convert-jekyll-plugins-to-hugo-shortcodes">#</a>
+</h2><p>Jekyll has <a class="md_link" href="http://jekyllrb.com/docs/plugins/"  >plugins<img class="icon" src="../../../img/link.svg" /></a>; Hugo has <a class="md_link" href="../../../doc/shortcodes/"  >shortcodes<img class="icon" src="../../../img/link.svg" /></a>. It&rsquo;s fairly trivial to do a port.</p>
+<h3 id="#implementation">
+    Implementation
+    <a class="anchor" name="implementation" href="#implementation">#</a>
+</h3><p>As an example, I was using a custom <a class="md_link" href="https://github.com/alexandre-normand/alexandre-normand/blob/74bb12036a71334fdb7dba84e073382fc06908ec/_plugins/image_tag.rb"  ><code>image_tag</code><img class="icon" src="../../../img/link.svg" /></a> plugin to generate figures with caption when running Jekyll. As I read about shortcodes, I found Hugo had a nice built-in shortcode that does exactly the same thing.</p>
+<p>Jekyll&rsquo;s plugin:</p>
+<pre><code>module Jekyll
+  class ImageTag &lt; Liquid::Tag
+    @url = nil
+    @caption = nil
+    @class = nil
+    @link = nil
+    // Patterns
+    IMAGE_URL_WITH_CLASS_AND_CAPTION =
+    IMAGE_URL_WITH_CLASS_AND_CAPTION_AND_LINK = /(\w+)(\s+)((https?:\/\/|\/)(\S+))(\s+)&quot;(.*?)&quot;(\s+)-&gt;((https?:\/\/|\/)(\S+))(\s*)/i
+    IMAGE_URL_WITH_CAPTION = /((https?:\/\/|\/)(\S+))(\s+)&quot;(.*?)&quot;/i
+    IMAGE_URL_WITH_CLASS = /(\w+)(\s+)((https?:\/\/|\/)(\S+))/i
+    IMAGE_URL = /((https?:\/\/|\/)(\S+))/i
+    def initialize(tag_name, markup, tokens)
+      super
+      if markup =~ IMAGE_URL_WITH_CLASS_AND_CAPTION_AND_LINK
+        @class   = $1
+        @url     = $3
+        @caption = $7
+        @link = $9
+      elsif markup =~ IMAGE_URL_WITH_CLASS_AND_CAPTION
+        @class   = $1
+        @url     = $3
+        @caption = $7
+      elsif markup =~ IMAGE_URL_WITH_CAPTION
+        @url     = $1
+        @caption = $5
+      elsif markup =~ IMAGE_URL_WITH_CLASS
+        @class = $1
+        @url   = $3
+      elsif markup =~ IMAGE_URL
+        @url = $1
+      end
+    end
+    def render(context)
+      if @class
+        source = &quot;&lt;figure class='#{@class}'&gt;&quot;
+      else
+        source = &quot;&lt;figure&gt;&quot;
+      end
+      if @link
+        source += &quot;&lt;a href=\&quot;#{@link}\&quot;&gt;&quot;
+      end
+      source += &quot;&lt;img src=\&quot;#{@url}\&quot;&gt;&quot;
+      if @link
+        source += &quot;&lt;/a&gt;&quot;
+      end
+      source += &quot;&lt;figcaption&gt;#{@caption}&lt;/figcaption&gt;&quot; if @caption
+      source += &quot;&lt;/figure&gt;&quot;
+      source
+    end
+  end
+end
+Liquid::Template.register_tag('image', Jekyll::ImageTag)
+</code></pre>
+<p>is written as this Hugo shortcode:</p>
+<pre><code>&lt;!-- image --&gt;
+&lt;figure {{ with .Get &quot;class&quot; }}class=&quot;{{.}}&quot;{{ end }}&gt;
+    {{ with .Get &quot;link&quot;}}&lt;a href=&quot;{{.}}&quot;&gt;{{ end }}
+        &lt;img src=&quot;{{ .Get &quot;src&quot; }}&quot; {{ if or (.Get &quot;alt&quot;) (.Get &quot;caption&quot;) }}alt=&quot;{{ with .Get &quot;alt&quot;}}{{.}}{{else}}{{ .Get &quot;caption&quot; }}{{ end }}&quot;{{ end }} /&gt;
+    {{ if .Get &quot;link&quot;}}&lt;/a&gt;{{ end }}
+    {{ if or (or (.Get &quot;title&quot;) (.Get &quot;caption&quot;)) (.Get &quot;attr&quot;)}}
+    &lt;figcaption&gt;{{ if isset .Params &quot;title&quot; }}
+        {{ .Get &quot;title&quot; }}{{ end }}
+        {{ if or (.Get &quot;caption&quot;) (.Get &quot;attr&quot;)}}&lt;p&gt;
+        {{ .Get &quot;caption&quot; }}
+        {{ with .Get &quot;attrlink&quot;}}&lt;a href=&quot;{{.}}&quot;&gt; {{ end }}
+            {{ .Get &quot;attr&quot; }}
+        {{ if .Get &quot;attrlink&quot;}}&lt;/a&gt; {{ end }}
+        &lt;/p&gt; {{ end }}
+    &lt;/figcaption&gt;
+    {{ end }}
+&lt;/figure&gt;
+&lt;!-- image --&gt;
+</code></pre>
+<h3 id="#usage">
+    Usage
+    <a class="anchor" name="usage" href="#usage">#</a>
+</h3><p>I simply changed:</p>
+<pre><code>&lt;%BEGIN image   -&gt;http://www.flickr.com/photos/alexnormand/4829260124/in/set-72157624547713078/ full http://farm5.staticflickr.com/4136/4829260124_57712e570a_o_d.jpg &quot;One of my favorite touristy-type photos. I secretly waited for the good light while we were &quot;having fun&quot; and took this. Only regret: a stupid pole in the top-left corner of the frame I had to clumsily get rid of at post-processing.&quot; END%&gt;
+</code></pre>
+<p>to this (this example uses a slightly extended version named <code>fig</code>, different than the built-in <code>figure</code>):</p>
+<pre><code>{{&lt; fig class=&quot;full&quot; src=&quot;http://farm5.staticflickr.com/4136/4829260124_57712e570a_o_d.jpg&quot; title=&quot;One of my favorite touristy-type photos. I secretly waited for the good light while we were having fun and took this. Only regret: a stupid pole in the top-left corner of the frame I had to clumsily get rid of at post-processing.&quot; link=&quot;http://www.flickr.com/photos/alexnormand/4829260124/in/set-72157624547713078/&quot; &gt;}}
+</code></pre>
+<p>As a bonus, the shortcode named parameters are, arguably, more readable.</p>
+<h2 id="#finishing-touches">
+    Finishing touches
+    <a class="anchor" name="finishing-touches" href="#finishing-touches">#</a>
+</h2><h3 id="#fix-content">
+    Fix content
+    <a class="anchor" name="fix-content" href="#fix-content">#</a>
+</h3><p>Depending on the amount of customization that was done with each post with Jekyll, this step will require more or less effort. There are no hard and fast rules here except that <code>hugo server --watch</code> is your friend. Test your changes and fix errors as needed.</p>
+<h3 id="#clean-up">
+    Clean up
+    <a class="anchor" name="clean-up" href="#clean-up">#</a>
+</h3><p>You&rsquo;ll want to remove the Jekyll configuration at this point. If you have anything else that isn&rsquo;t used, delete it.</p>
+<h2 id="#a-practical-example-in-a-diff">
+    A practical example in a diff
+    <a class="anchor" name="a-practical-example-in-a-diff" href="#a-practical-example-in-a-diff">#</a>
+</h2><p><a class="md_link" href="http://heyitsalex.net/"  >Hey, it&rsquo;s Alex<img class="icon" src="../../../img/link.svg" /></a> was migrated in less than a <em>father-with-kids day</em> from Jekyll to Hugo. You can see all the changes (and screw-ups) by looking at this <a class="md_link" href="https://github.com/alexandre-normand/alexandre-normand/compare/869d69435bd2665c3fbf5b5c78d4c22759d7613a...b7f6605b1265e83b4b81495423294208cc74d610"  >diff<img class="icon" src="../../../img/link.svg" /></a>.</p>
+</main><footer class="footer">
+    <br><br><hr>
+    <div class="sitemap"><div class="group">
+            <span class="title">博客</span><a class="link" href="../../../">所有文章</a><a class="link" href="../../../categories/">分类</a><a class="link" href="../../../tags/">标签</a><a class="link" href="../../../archives/">归档</a></div><div class="group">
+            <span class="title">文档</span><a class="link" href="../../../docs/">所有文档</a></div><div class="group">
+            <span class="title">搜索</span><a class="link" href="../../../search/?sec=posts">博客搜索</a><a class="link" href="../../../search/?sec=docs">文档搜索</a></div><div class="group">
+            <span class="title">关于</span><a class="link" href="../../../about/#about-hugo">About Hugo</a></div></div>
+</footer>
+</div>
+</div></body>
+</html>

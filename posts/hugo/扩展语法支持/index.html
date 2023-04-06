@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>扩展语法支持 - Stellar Hugo Theme</title>
+
+    <meta charset="utf-8">
+    <meta name="author" content="Stellar">
+    <meta name="Robots" content="All">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="windows-Target" content="_top">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../../logo.svg" />
+    <link rel="alt" type="application/rss+xml" href=../../../index.xml title="Stellar Hugo Theme" />
+    <link rel="stylesheet" href=../../../_index.css>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" /><script src="../../../modules/redirector.js"></script><link rel='dns-prefetch' href='https://cdn.staticfile.org'>
+    <link rel='preconnect' href='https://cdn.staticfile.org' crossorigin=''><link rel='stylesheet' href='https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.1.0/lxgwwenkaiscreen.css'><script src='https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js' ></script><script src='https://cdn.staticfile.org/mermaid/9.4.0/mermaid.js' ></script><link rel='stylesheet' href='../../../modules/fancybox.css'><script src='../../../modules/fancybox.umd.js' defer></script><script src='../../../modules/img.js' defer></script><script src='../../../modules/toc.js' defer></script><script src='../../../modules/codeblock.js' defer></script><script src='../../../modules/mathjax.js' defer></script><script src='https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js' defer></script><link rel="stylesheet" href=../../../autoinvert.css>
+<script>
+    mermaid.initialize({
+        securityLevel: 'loose',
+        themeVariables: {
+            fontFamily: 'Cera Round Pro',
+            fontSize: '85%'
+        }
+    });
+</script>
+</head>
+<body><div class="LBody">
+    <div class="Side"><header class="header">
+    <div class="info">
+        <a class="avatar" href="../../../">
+            <div class="bg shadow"></div>
+            <img class="bg rainbow" src="../../../img/rainbow64@3x.webp">
+            <img class="avatar" src="../../../avatar.png">
+        </a>
+        <a class="title" href="../../../">
+            <p class="text site-title">Stellar</p>
+            <p class="sub up">subtitle</p>
+            <p class="sub dw">subsubtitle</p>
+        </a>
+    </div>
+    <nav class="menu"><a class="nav-item active" href="../../../">博客</a><a class="nav-item " href="../../../docs/">文档</a><a class="nav-item " href="../../../search/">搜索</a><a class="nav-item " href="../../../about/">关于</a></nav>
+</header><div class="widgets"><div class="widget search"><div class="search-form">
+    <input type="text" class="search-input" id="side-search-input" placeholder="" AUTOCOMPLETE="off">
+    <img class="search-icon" src="../../../img/search.svg">
+    <script>
+        var $input = $('#side-search-input');
+        var section = window.location.pathname.substring(0,6) == "/docs/" ? "docs" : "posts";
+        $input.attr('placeholder', section == "docs" ? "文档搜索" : "博客搜索")
+        $input.keydown( (e) => {
+            if (e.keyCode == 13) {
+                window.open(`/search/?sec=${section}?key=${$input.val()}`)
+            }
+        });
+    </script>
+</div></div><div class="widget toc"><p class="title"><a href="#">扩展语法支持</a></p>
+<div class="content markdown"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#mkdocs-语法">MkDocs 语法</a>
+      <ul>
+        <li><a href="#hint">Hint</a></li>
+        <li><a href="#columns">Columns</a></li>
+        <li><a href="#tabs">Tabs</a></li>
+      </ul>
+    </li>
+    <li><a href="#stellar-语法">Stellar 语法</a>
+      <ul>
+        <li><a href="#inline">Inline</a>
+          <ul>
+            <li><a href="#note">Note</a></li>
+            <li><a href="#mark">Mark</a></li>
+            <li><a href="#tag">Tag</a></li>
+            <li><a href="#copy">Copy</a></li>
+            <li><a href="#radio">Radio</a></li>
+            <li><a href="#checkbox">Checkbox</a></li>
+          </ul>
+        </li>
+        <li><a href="#display">Display</a>
+          <ul>
+            <li><a href="#folding">Folding</a></li>
+            <li><a href="#poetry">Poetry</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div></div></div>
+
+<footer class="footer">
+    <div class="social"><a class="box" href="https://github.com/" target="_blank">
+            
+	    <i class="fa-brands fa-square-github fa-lg"></i>
+        </a><a class="box" href="https://yuque.com/" target="_blank">
+            
+	    <i class="fa-solid fa-crow fa-lg"></i>
+        </a><a class="box" href="https://space.bilibili.com/" target="_blank">
+            
+	    <i class="fa-brands fa-bilibili fa-lg"></i>
+        </a></div>
+</footer>
+</div>
+    <div class="Main"><div class="info mobile-only">
+    <a class="avatar" href="../../../">
+        <div class="bg shadow"></div>
+        <img class="bg rainbow" src="../../../img/rainbow64@3x.webp">
+        <img class="avatar" src="../../../avatar.png">
+    </a>
+    <a class="title" href="../../../">
+        <p class="text site-title">Stellar</p>
+        <p class="sub up">subtitle</p>
+        <p class="sub dw">subsubtitle</p>
+    </a>
+</div>
+<div class="mobile-only sidebar-button" onclick="sidebar_button_click()">
+    <img src="../../../img/menu.svg"></img>
+    <script>
+    sidebar_button_click = (e) => {
+        $(".Side")[0].classList.toggle("layout");
+        $(".sidebar-button")[0].classList.toggle("layout");
+    }
+    </script>
+</div><main class="content markdown">
+    <div class="params"><div class="tags"><a class="param" href="../../../tags/hugo">Hugo</a></div><div class="meta">发布于 2023-02-12</div>
+    </div>
+    
+    <h1 class="title">扩展语法支持</h1>
+    <span class="description">本文主要内容是测试 Hugo 对 Markdown 扩展语法的支持情况，方便后续写作时查阅。</span><h2 id="#mkdocs-语法">
+    MkDocs 语法
+    <a class="anchor" name="mkdocs-语法" href="#mkdocs-%e8%af%ad%e6%b3%95">#</a>
+</h2><h3 id="#hint">
+    Hint
+    <a class="anchor" name="hint" href="#hint">#</a>
+</h3><div class='mkdocs columns'> 
+<div class='inner markdown'><div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2">2</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">!!! note
+</span></span><span class="line"><span class="cl">    <span class="sb">`markdown`</span> text</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><div class='mkdocs hint note' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/note.svg' />
+        <span>note</span>
+    </p>
+    <div class='inner'> 
+<p><code>markdown</code> text</p>
+ </div>
+</div></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+</div> 
+<div class='inner markdown'><div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2">2</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">!!! note Custom Title
+</span></span><span class="line"><span class="cl">    <span class="sb">`markdown`</span> text</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><div class='mkdocs hint note' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/note.svg' />
+        <span>Custom Title</span>
+    </p>
+    <div class='inner'> 
+<p><code>markdown</code> text</p>
+ </div>
+</div></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+</div> 
+ </div> 
+<!--  -->
+<div class='mkdocs columns'> 
+<div class='inner markdown'><div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2">2</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">??? note Collapsible
+</span></span><span class="line"><span class="cl">    <span class="sb">`markdown`</span> text</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><details class='mkdocs hint note' ZgotmplZ>
+    <summary class='title'>
+        <img class='icon' src='../../../img/material/note.svg' />
+        <span>Collapsible</span>
+        <img class='arrow' src='../../../img/arrow.svg'>
+    </summary>
+    <div class='inner'> 
+<p><code>markdown</code> text</p>
+ </div>
+</details></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+</div> 
+<div class='inner markdown'><div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2">2</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">???+ note Collapsible Open
+</span></span><span class="line"><span class="cl">    <span class="sb">`markdown`</span> text</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><details class='mkdocs hint note' open>
+    <summary class='title'>
+        <img class='icon' src='../../../img/material/note.svg' />
+        <span>Collapsible Open</span>
+        <img class='arrow' src='../../../img/arrow.svg'>
+    </summary>
+    <div class='inner'> 
+<p><code>markdown</code> text</p>
+ </div>
+</details></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+</div> 
+ </div> 
+<p>Hint 允许包含和嵌套任意内容。</p>
+<div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2">2</a>
+</span><span class="lnt" id="3"><a class="lnlinks" href="#3">3</a>
+</span><span class="lnt" id="4"><a class="lnlinks" href="#4">4</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">???+ bug
+</span></span><span class="line"><span class="cl">    ???+ bug
+</span></span><span class="line"><span class="cl">        ???+ bug
+</span></span><span class="line"><span class="cl">            Nested bugs.</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><details class='mkdocs hint bug' open>
+    <summary class='title'>
+        <img class='icon' src='../../../img/material/bug.svg' />
+        <span>bug</span>
+        <img class='arrow' src='../../../img/arrow.svg'>
+    </summary>
+    <div class='inner'> 
+<details class='mkdocs hint bug' open>
+    <summary class='title'>
+        <img class='icon' src='../../../img/material/bug.svg' />
+        <span>bug</span>
+        <img class='arrow' src='../../../img/arrow.svg'>
+    </summary>
+    <div class='inner'><details class='mkdocs hint bug' open>
+    <summary class='title'>
+        <img class='icon' src='../../../img/material/bug.svg' />
+        <span>bug</span>
+        <img class='arrow' src='../../../img/arrow.svg'>
+    </summary>
+    <div class='inner'><p>Nested bugs.</p>
+</div>
+</details> 
+</div>
+</details> 
+ </div>
+</details></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<p>MkDocs 一共支持 12 种 Hint。</p>
+<div class='mkdocs columns'> 
+<div class='inner markdown'><div class='mkdocs hint note' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/note.svg' />
+        <span>note</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+<div class='inner markdown'><div class='mkdocs hint abstract' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/abstract.svg' />
+        <span>abstract</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+<div class='inner markdown'><div class='mkdocs hint info' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/info.svg' />
+        <span>info</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+ </div> 
+<!--  -->
+<div class='mkdocs columns'> 
+<div class='inner markdown'><div class='mkdocs hint tip' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/tip.svg' />
+        <span>tip</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+<div class='inner markdown'><div class='mkdocs hint success' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/success.svg' />
+        <span>success</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+<div class='inner markdown'><div class='mkdocs hint question' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/question.svg' />
+        <span>question</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+ </div> 
+<!--  -->
+<div class='mkdocs columns'> 
+<div class='inner markdown'><div class='mkdocs hint warning' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/warning.svg' />
+        <span>warning</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+<div class='inner markdown'><div class='mkdocs hint failure' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/failure.svg' />
+        <span>failure</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+<div class='inner markdown'><div class='mkdocs hint danger' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/danger.svg' />
+        <span>danger</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+ </div> 
+<!--  -->
+<div class='mkdocs columns'> 
+<div class='inner markdown'><div class='mkdocs hint bug' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/bug.svg' />
+        <span>bug</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+<div class='inner markdown'><div class='mkdocs hint example' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/example.svg' />
+        <span>example</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+<div class='inner markdown'><div class='mkdocs hint quote' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/quote.svg' />
+        <span>quote</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+ </div> 
+<h3 id="#columns">
+    Columns
+    <a class="anchor" name="columns" href="#columns">#</a>
+</h3><p>Columns 用于并排显示某些内容（在较窄的屏幕上会自动取消 Columns 效果）。</p>
+<p>通过 HTML 注释 <code>&lt;!--  --&gt;</code> 将不同的 Columns 隔开。</p>
+<div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1"> 1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2"> 2</a>
+</span><span class="lnt" id="3"><a class="lnlinks" href="#3"> 3</a>
+</span><span class="lnt" id="4"><a class="lnlinks" href="#4"> 4</a>
+</span><span class="lnt" id="5"><a class="lnlinks" href="#5"> 5</a>
+</span><span class="lnt" id="6"><a class="lnlinks" href="#6"> 6</a>
+</span><span class="lnt" id="7"><a class="lnlinks" href="#7"> 7</a>
+</span><span class="lnt" id="8"><a class="lnlinks" href="#8"> 8</a>
+</span><span class="lnt" id="9"><a class="lnlinks" href="#9"> 9</a>
+</span><span class="lnt" id="10"><a class="lnlinks" href="#10">10</a>
+</span><span class="lnt" id="11"><a class="lnlinks" href="#11">11</a>
+</span><span class="lnt" id="12"><a class="lnlinks" href="#12">12</a>
+</span><span class="lnt" id="13"><a class="lnlinks" href="#13">13</a>
+</span><span class="lnt" id="14"><a class="lnlinks" href="#14">14</a>
+</span><span class="lnt" id="15"><a class="lnlinks" href="#15">15</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">:::
+</span></span><span class="line"><span class="cl">    !!! note Top Left
+</span></span><span class="line"><span class="cl">        <span class="sb">`markdown`</span> text
+</span></span><span class="line"><span class="cl">:::
+</span></span><span class="line"><span class="cl">    !!! note Top Right
+</span></span><span class="line"><span class="cl">        <span class="sb">`markdown`</span> text
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--  --&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">:::
+</span></span><span class="line"><span class="cl">    !!! note Bottom Left
+</span></span><span class="line"><span class="cl">        <span class="sb">`markdown`</span> text
+</span></span><span class="line"><span class="cl">:::
+</span></span><span class="line"><span class="cl">    !!! note Bottom Right
+</span></span><span class="line"><span class="cl">        <span class="sb">`markdown`</span> text</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><div class='mkdocs columns'> 
+<div class='inner markdown'><div class='mkdocs hint note' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/note.svg' />
+        <span>Top Left</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+<div class='inner markdown'><div class='mkdocs hint note' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/note.svg' />
+        <span>Top Right</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+ </div> 
+<!--  -->
+<div class='mkdocs columns'> 
+<div class='inner markdown'><div class='mkdocs hint note' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/note.svg' />
+        <span>Bottom Left</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+<div class='inner markdown'><div class='mkdocs hint note' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/note.svg' />
+        <span>Bottom Right</span>
+    </p>
+    <div class='inner'><p><code>markdown</code> text</p>
+</div>
+</div> 
+</div> 
+ </div></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<h3 id="#tabs">
+    Tabs
+    <a class="anchor" name="tabs" href="#tabs">#</a>
+</h3><p>Tabs 用于呈现选项卡效果，允许包含和嵌套任意内容。</p>
+<p>当 Tab 没有内容时，对应的选项卡将不可点击。</p>
+<div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1"> 1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2"> 2</a>
+</span><span class="lnt" id="3"><a class="lnlinks" href="#3"> 3</a>
+</span><span class="lnt" id="4"><a class="lnlinks" href="#4"> 4</a>
+</span><span class="lnt" id="5"><a class="lnlinks" href="#5"> 5</a>
+</span><span class="lnt" id="6"><a class="lnlinks" href="#6"> 6</a>
+</span><span class="lnt" id="7"><a class="lnlinks" href="#7"> 7</a>
+</span><span class="lnt" id="8"><a class="lnlinks" href="#8"> 8</a>
+</span><span class="lnt" id="9"><a class="lnlinks" href="#9"> 9</a>
+</span><span class="lnt" id="10"><a class="lnlinks" href="#10">10</a>
+</span><span class="lnt" id="11"><a class="lnlinks" href="#11">11</a>
+</span><span class="lnt" id="12"><a class="lnlinks" href="#12">12</a>
+</span><span class="lnt" id="13"><a class="lnlinks" href="#13">13</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">=== Disabled
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">=== Tab 1
+</span></span><span class="line"><span class="cl">    !!! tip
+</span></span><span class="line"><span class="cl">        This is Tab 1.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">=== Tab 2
+</span></span><span class="line"><span class="cl">    !!! warning
+</span></span><span class="line"><span class="cl">        This is Tab 2.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">=== Tab 3
+</span></span><span class="line"><span class="cl">    !!! danger
+</span></span><span class="line"><span class="cl">        This is Tab 3.</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><div class='mkdocs tabs' name="tabs-%!s(int=0)"><input type='radio' class='toggle' name="tabs-%!s(int=0)" id="tabs-%!s(int=0)-%!s(int=0)" >
+    <label class="label disabled" for="tabs-%!s(int=0)-%!s(int=0)">Disabled</label>
+    <div class='inner'></div><input type='radio' class='toggle' name="tabs-%!s(int=0)" id="tabs-%!s(int=0)-%!s(int=1)" checked="checked">
+    <label class="label " for="tabs-%!s(int=0)-%!s(int=1)">Tab 1</label>
+    <div class='inner'><div class='mkdocs hint tip' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/tip.svg' />
+        <span>tip</span>
+    </p>
+    <div class='inner'><p>This is Tab 1.</p>
+</div>
+</div> 
+</div><input type='radio' class='toggle' name="tabs-%!s(int=0)" id="tabs-%!s(int=0)-%!s(int=2)" >
+    <label class="label " for="tabs-%!s(int=0)-%!s(int=2)">Tab 2</label>
+    <div class='inner'><div class='mkdocs hint warning' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/warning.svg' />
+        <span>warning</span>
+    </p>
+    <div class='inner'><p>This is Tab 2.</p>
+</div>
+</div> 
+</div><input type='radio' class='toggle' name="tabs-%!s(int=0)" id="tabs-%!s(int=0)-%!s(int=3)" >
+    <label class="label " for="tabs-%!s(int=0)-%!s(int=3)">Tab 3</label>
+    <div class='inner'><div class='mkdocs hint danger' open>
+    <p class='title'>
+        <img class='icon' src='../../../img/material/danger.svg' />
+        <span>danger</span>
+    </p>
+    <div class='inner'><p>This is Tab 3.</p>
+</div>
+</div> 
+</div></div></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<h2 id="#stellar-语法">
+    Stellar 语法
+    <a class="anchor" name="stellar-语法" href="#stellar-%e8%af%ad%e6%b3%95">#</a>
+</h2><h3 id="#inline">
+    Inline
+    <a class="anchor" name="inline" href="#inline">#</a>
+</h3><h4 id="#note">
+    Note
+    <a class="anchor" name="note" href="#note">#</a>
+</h4><div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2">2</a>
+</span><span class="lnt" id="3"><a class="lnlinks" href="#3">3</a>
+</span><span class="lnt" id="4"><a class="lnlinks" href="#4">4</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% note Title <span class="sb">`Markdown`</span> text %}
+</span></span><span class="line"><span class="cl">{% note color:red Title <span class="sb">`Markdown`</span> text %}
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- 使用 &#34;&amp;nbsp;&#34; 在标题中呈现空格 --&gt;</span>
+</span></span><span class="line"><span class="cl">{% note color:blue Hello<span class="ni">&amp;nbsp;</span>World <span class="sb">`Markdown`</span> text %}</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><div class='stellar note' color=''>
+    <p class='title'>Title</p>
+    <div class='inner'><code>Markdown</code> text</div>
+</div>
+<div class='stellar note' color='red'>
+    <p class='title'>Title</p>
+    <div class='inner'><code>Markdown</code> text</div>
+</div>
+<!-- 使用 "&nbsp;" 在标题中呈现空格 -->
+<div class='stellar note' color='blue'>
+    <p class='title'>Hello World</p>
+    <div class='inner'><code>Markdown</code> text</div>
+</div></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<p>Note 一共支持 12 种颜色。</p>
+<div class='mkdocs columns'> 
+<div class='inner markdown'><div class='stellar note' color=''>
+    <p class='title'>Default</p>
+    <div class='inner'><code>Markdown</code> text</div>
+</div>
+</div> 
+<div class='inner markdown'><div class='stellar note' color='red'>
+    <p class='title'>red</p>
+    <div class='inner'><code>Markdown</code> text</div>
+</div>
+</div> 
+<div class='inner markdown'><div class='stellar note' color='orange'>
+    <p class='title'>orange</p>
+    <div class='inner'><code>Markdown</code> text</div>
+</div>
+</div> 
+ </div> 
+<!--  -->
+<div class='mkdocs columns'> 
+<div class='inner markdown'><div class='stellar note' color='yellow'>
+    <p class='title'>yellow</p>
+    <div class='inner'><code>Markdown</code> text</div>
+</div>
+</div> 
+<div class='inner markdown'><div class='stellar note' color='green'>
+    <p class='title'>green</p>
+    <div class='inner'><code>Markdown</code> text</div>
+</div>
+</div> 
+<div class='inner markdown'><div class='stellar note' color='cyan'>
+    <p class='title'>cyan</p>
+    <div class='inner'><code>Markdown</code> text</div>
+</div>
+</div> 
+ </div> 
+<!--  -->
+<div class='mkdocs columns'> 
+<div class='inner markdown'><div class='stellar note' color='blue'>
+    <p class='title'>blue</p>
+    <div class='inner'><code>Markdown</code> text</div>
+</div>
+</div> 
+<div class='inner markdown'><div class='stellar note' color='purple'>
+    <p class='title'>purple</p>
+    <div class='inner'><code>Markdown</code> text</div>
+</div>
+</div> 
+<div class='inner markdown'><div class='stellar note' color='light'>
+    <p class='title'>light</p>
+    <div class='inner'><code>Markdown</code> text</div>
+</div>
+</div> 
+ </div> 
+<!--  -->
+<div class='mkdocs columns'> 
+<div class='inner markdown'><div class='stellar note' color='dark'>
+    <p class='title'>dark</p>
+    <div class='inner'><code>Markdown</code> text</div>
+</div>
+</div> 
+<div class='inner markdown'><div class='stellar note' color='warning'>
+    <p class='title'>warning</p>
+    <div class='inner'><code>Markdown</code> text</div>
+</div>
+</div> 
+<div class='inner markdown'><div class='stellar note' color='error'>
+    <p class='title'>error</p>
+    <div class='inner'><code>Markdown</code> text</div>
+</div>
+</div> 
+ </div> 
+<h4 id="#mark">
+    Mark
+    <a class="anchor" name="mark" href="#mark">#</a>
+</h4><p>Mark 和 <a class="md_link" href="#note"  >Note<img class="icon" src="../../../img/link.svg" /></a> 一样支持 12 种颜色。</p>
+<div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2">2</a>
+</span><span class="lnt" id="3"><a class="lnlinks" href="#3">3</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% mark Default %}
+</span></span><span class="line"><span class="cl">{% mark color:blue Blue %}
+</span></span><span class="line"><span class="cl">{% mark color:green Green %}</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><span class='stellar mark' color=''>Default</span>
+<span class='stellar mark' color='blue'>Blue</span>
+<span class='stellar mark' color='green'>Green</span></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<h4 id="#tag">
+    Tag
+    <a class="anchor" name="tag" href="#tag">#</a>
+</h4><div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2">2</a>
+</span><span class="lnt" id="3"><a class="lnlinks" href="#3">3</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% tag GitHub https://github.com/ %}
+</span></span><span class="line"><span class="cl">{% tag color:blue Hexo https://hexo.io/ %}
+</span></span><span class="line"><span class="cl">{% tag color:green W3Schools https://www.w3schools.com/ %}</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><a class='stellar tag' color='' href='https://github.com/' target='_blank'>GitHub</a>
+<a class='stellar tag' color='blue' href='https://hexo.io/' target='_blank'>Hexo</a>
+<a class='stellar tag' color='green' href='https://www.w3schools.com/' target='_blank'>W3Schools</a></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<h4 id="#copy">
+    Copy
+    <a class="anchor" name="copy" href="#copy">#</a>
+</h4><div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2">2</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% copy sudo apt-get upgrade %}
+</span></span><span class="line"><span class="cl">{% copy sudo ubuntu-drivers autoinstall %}</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><div class='stellar copy-area'>
+    <pre><code>sudo apt-get upgrade</code><span class='clipboard'><img src='../../../img/clipboard.svg'></span></pre>
+</div>
+<div class='stellar copy-area'>
+    <pre><code>sudo ubuntu-drivers autoinstall</code><span class='clipboard'><img src='../../../img/clipboard.svg'></span></pre>
+</div></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<h4 id="#radio">
+    Radio
+    <a class="anchor" name="radio" href="#radio">#</a>
+</h4><div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2">2</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% radio <span class="sb">`markdown`</span> text %}
+</span></span><span class="line"><span class="cl">{% radio checked:true <span class="sb">`markdown`</span> text %}</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><div class='stellar radio-box'>
+    <input type='radio' checked='' />
+    <span><code>markdown</code> text</span>
+</div>
+<div class='stellar radio-box'>
+    <input type='radio' checked='true' />
+    <span><code>markdown</code> text</span>
+</div></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<h4 id="#checkbox">
+    Checkbox
+    <a class="anchor" name="checkbox" href="#checkbox">#</a>
+</h4><div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2">2</a>
+</span><span class="lnt" id="3"><a class="lnlinks" href="#3">3</a>
+</span><span class="lnt" id="4"><a class="lnlinks" href="#4">4</a>
+</span><span class="lnt" id="5"><a class="lnlinks" href="#5">5</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% checkbox <span class="sb">`markdown`</span> text %}
+</span></span><span class="line"><span class="cl">{% checkbox checked:true <span class="sb">`markdown`</span> text %}
+</span></span><span class="line"><span class="cl">{% checkbox symbol:plus color:green checked:true <span class="sb">`markdown`</span> text %}
+</span></span><span class="line"><span class="cl">{% checkbox symbol:minus color:yellow checked:true <span class="sb">`markdown`</span> text %}
+</span></span><span class="line"><span class="cl">{% checkbox symbol:times color:red checked:true <span class="sb">`markdown`</span> text %}</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><div class='stellar check-box' color=''>
+    <input type='radio' checked='' symbol='' />
+    <span><code>markdown</code> text</span>
+</div>
+<div class='stellar check-box' color=''>
+    <input type='radio' checked='true' symbol='' />
+    <span><code>markdown</code> text</span>
+</div>
+<div class='stellar check-box' color='green'>
+    <input type='radio' checked='true' symbol='plus' />
+    <span><code>markdown</code> text</span>
+</div>
+<div class='stellar check-box' color='yellow'>
+    <input type='radio' checked='true' symbol='minus' />
+    <span><code>markdown</code> text</span>
+</div>
+<div class='stellar check-box' color='red'>
+    <input type='radio' checked='true' symbol='times' />
+    <span><code>markdown</code> text</span>
+</div></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<h3 id="#display">
+    Display
+    <a class="anchor" name="display" href="#display">#</a>
+</h3><h4 id="#folding">
+    Folding
+    <a class="anchor" name="folding" href="#folding">#</a>
+</h4><div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2">2</a>
+</span><span class="lnt" id="3"><a class="lnlinks" href="#3">3</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% folding Title open:true color:blue %}
+</span></span><span class="line"><span class="cl"><span class="sb">`Markdown`</span> text
+</span></span><span class="line"><span class="cl">{% endfolding %}</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><details class='stellar folding' color='blue'  open>
+    <summary>
+        <img class='arrow' src='../../../img/arrow.svg' />
+        <span>Title</span>
+    </summary>
+    <div class='body'><code>Markdown</code> text</div>
+</details></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<p>Folding 允许包含和嵌套任意内容</p>
+<div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2">2</a>
+</span><span class="lnt" id="3"><a class="lnlinks" href="#3">3</a>
+</span><span class="lnt" id="4"><a class="lnlinks" href="#4">4</a>
+</span><span class="lnt" id="5"><a class="lnlinks" href="#5">5</a>
+</span><span class="lnt" id="6"><a class="lnlinks" href="#6">6</a>
+</span><span class="lnt" id="7"><a class="lnlinks" href="#7">7</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% folding Warning color:yellow %}
+</span></span><span class="line"><span class="cl">{% folding Dangerous color:orange %}
+</span></span><span class="line"><span class="cl">{% folding Prohibited color:red %}
+</span></span><span class="line"><span class="cl"><span class="sb">`Markdown`</span> text
+</span></span><span class="line"><span class="cl">{% endfolding %}
+</span></span><span class="line"><span class="cl">{% endfolding %}
+</span></span><span class="line"><span class="cl">{% endfolding %}</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><details class='stellar folding' color='yellow'  >
+    <summary>
+        <img class='arrow' src='../../../img/arrow.svg' />
+        <span>Warning</span>
+    </summary>
+    <div class='body'><details class='stellar folding' color='orange'  >
+    <summary>
+        <img class='arrow' src='../../../img/arrow.svg' />
+        <span>Dangerous</span>
+    </summary>
+    <div class='body'><details class='stellar folding' color='red'  >
+    <summary>
+        <img class='arrow' src='../../../img/arrow.svg' />
+        <span>Prohibited</span>
+    </summary>
+    <div class='body'><code>Markdown</code> text</div>
+</details>
+</div>
+</details>
+</div>
+</details></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+<h4 id="#poetry">
+    Poetry
+    <a class="anchor" name="poetry" href="#poetry">#</a>
+</h4><div class="highlight"  render=true title=Example><div class="title">Example</div><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt" id="1"><a class="lnlinks" href="#1">1</a>
+</span><span class="lnt" id="2"><a class="lnlinks" href="#2">2</a>
+</span><span class="lnt" id="3"><a class="lnlinks" href="#3">3</a>
+</span><span class="lnt" id="4"><a class="lnlinks" href="#4">4</a>
+</span><span class="lnt" id="5"><a class="lnlinks" href="#5">5</a>
+</span><span class="lnt" id="6"><a class="lnlinks" href="#6">6</a>
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% poetry 独不见 author:唐·沈佺期 footer:诗词节选 %}
+</span></span><span class="line"><span class="cl">卢家少妇郁金堂，海燕双栖玳瑁梁。
+</span></span><span class="line"><span class="cl"><span class="ge">**</span>九月寒砧催木叶，十年征戍忆辽阳。**
+</span></span><span class="line"><span class="cl">白狼河北音书断，丹凤城南秋夜长。
+</span></span><span class="line"><span class="cl">谁为含愁独不见，更教明月照流黄？
+</span></span><span class="line"><span class="cl">{% endpoetry %}</span></span></code></pre></td></tr></table>
+</div>
+<div class="result"><div class='stellar poetry'>
+    <div class='inner'>
+        <div class='title'>独不见</div>
+        <div class='meta'>唐·沈佺期</div>
+        <div class='body'><p>卢家少妇郁金堂，海燕双栖玳瑁梁。</p>
+<p><strong>九月寒砧催木叶，十年征戍忆辽阳。</strong></p>
+<p>白狼河北音书断，丹凤城南秋夜长。</p>
+<p>谁为含愁独不见，更教明月照流黄？</p>
+</div>
+        <div class='footer'>诗词节选</div>
+    </div>
+</div></div><span class='board'>
+        <img class='edit' src='../../../img/edit.svg'>
+        <img class='clipboard' src='../../../img/clipboard.svg'>
+    </span>
+</div>
+</main><footer class="footer">
+    <br><br><hr>
+    <div class="sitemap"><div class="group">
+            <span class="title">博客</span><a class="link" href="../../../">所有文章</a><a class="link" href="../../../categories/">分类</a><a class="link" href="../../../tags/">标签</a><a class="link" href="../../../archives/">归档</a></div><div class="group">
+            <span class="title">文档</span><a class="link" href="../../../docs/">所有文档</a></div><div class="group">
+            <span class="title">搜索</span><a class="link" href="../../../search/?sec=posts">博客搜索</a><a class="link" href="../../../search/?sec=docs">文档搜索</a></div><div class="group">
+            <span class="title">关于</span><a class="link" href="../../../about/#about-hugo">About Hugo</a></div></div>
+</footer>
+</div>
+</div></body>
+</html>
