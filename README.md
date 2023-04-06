@@ -30,8 +30,9 @@
 hugo new site mysite
 cd mysite
 git init
-git submodule add -b dev https://github.com/Stellar-Hugo-Theme themes/stellar
+git submodule add https://github.com/shenweiyan/Stellar-Hugo-Theme themes/Stellar-Hugo-Theme
 cp -R themes/Stellar-Hugo-Theme/exampleSite/* .
+rm config.toml
 ```
 
 预览网站：
@@ -51,7 +52,7 @@ hugo server
 > 3. 请务必检查您的站点配置文件（如 `config.yaml`）中包含有：
 > ```
 > theme:
-> - stellar
+> - Stellar-Hugo-Theme
 > ```
 
 ## 内容管理
