@@ -17,8 +17,9 @@ jobs:
 
       - name: Build 
         run: |
+          ls -alt
           cp -R exampleSite/* .
-          hugo --themesDir ../..
+          hugo --themesDir ../
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3	# 一个自动发布github pages的action
